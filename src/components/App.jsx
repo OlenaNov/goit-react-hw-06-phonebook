@@ -1,11 +1,6 @@
-// import { useState, useEffect } from "react";
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 import ContactForm from "./ContactForm";
 import ContactList from "./ContactList";
 import Filter from "./Filter";
-
-// const CONTACTS_STORAGE_KEY = 'contacts-storage';
 
 export function App() {
   

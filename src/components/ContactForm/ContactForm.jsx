@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Label, SubmitContact } from "./ContactForm.styled";
-import { useDispatch } from "react-redux";
 import { addContact } from "redux/contactsSlice";
 
 function ContactForm() {
@@ -8,6 +9,7 @@ function ContactForm() {
         const [name, setName] = useState('');
         const [number, setNumber] = useState('');
         const dispatch = useDispatch();
+        const contacts = useSelector(state => state.contacts);
         
         const changeInput = e => {
                 const nameInput = e.currentTarget.name;
@@ -27,9 +29,19 @@ function ContactForm() {
                 };
         }; 
 
+        
+    
+        const controllingUniqueness = (name) => {
+          return contacts.some(contact => contact.name === name)
+        };
 
         const handleSubmit = e => {
                 e.preventDefault();
+
+                if(controllingUniqueness(name)) {
+                        Notify.warning(`${name} is already in contacts`);
+                        return;
+                };
                 dispatch(addContact(name, number));
                 setName('');
                 setNumber('');

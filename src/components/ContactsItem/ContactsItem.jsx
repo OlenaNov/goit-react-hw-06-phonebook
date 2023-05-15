@@ -7,17 +7,6 @@ const ContactsItem = () => {
     const filter = useSelector(state => state.filter.value).toLowerCase();
     const dispatch = useDispatch();
 
-    
-  // const controllingUniqueness = (name) => {
-  //   return contacts.some(contact => contact.name === name)
-  // };
-
-    // const addContact = (name, number) => {
-  //   if(controllingUniqueness(name)) {
-  //     Notify.warning(`${name} is already in contacts`);
-  //     return;
-  //   };
-
     const visualContacts = contacts.filter(contact => 
         contact.name.toLowerCase().includes(filter)
     );
